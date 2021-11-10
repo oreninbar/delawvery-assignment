@@ -1,0 +1,11 @@
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 7vh;
+  background-color: #5a75fc;
+}
+.logo {
+  height: 2.5rem;
+}

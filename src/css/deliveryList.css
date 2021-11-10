@@ -1,0 +1,32 @@
+.list-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.list-titles-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  height: 12rem;
+}
+
+.list-titles-wrapper .orders-title{
+    margin: .8rem 0rem;
+}
+
+.list-titles-wrapper .orders-amount{
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.list-titles-wrapper .orders-title-wrapper{
+
+}
+.order_list_cards-container {
+  height: 100%;
+  width: 100%;
+}

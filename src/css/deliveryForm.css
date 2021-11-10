@@ -1,0 +1,77 @@
+.form-container {
+  display: flex;
+  width: 80vw;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 100vh;
+  border-right: solid .1rem rgb(143, 143, 143, 0.3);
+}
+
+.neworder-title {
+  position: relative;
+  top: 3rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  inset-inline-end: 4rem;
+  height: 12rem;
+  width: 100%;
+  text-align: end;
+}
+
+.form {
+  margin-inline-end: 4rem;
+  width: 50%;
+  height: 30%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.form .input-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+}
+
+.input-wrapper.privat-name {
+  grid-column: 3/4;
+  grid-row: 1/2;
+}
+.form-input {
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  border: solid 0.1rem rgba(143, 143, 143, 0.74);
+}
+
+.input-wrapper.family-name {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+.input-wrapper.date {
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
+
+.form-date.form-input{
+  color:rgb(131, 131, 131);
+  text-align: end;
+  width: 100%;
+  background-color: white;
+}
+
+.form-input-btn {
+  grid-column: 3/4;
+  grid-row: 3/4;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  color:white;
+  font-weight: 600;
+  background-color: rgba(119, 119, 119, 0.575);
+  border: none;
+}
+
+label{
+  color:rgb(131, 131, 131);
+}

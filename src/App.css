@@ -1,0 +1,32 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.html {
+  font-size: 10px;
+}
+
+.App {
+  font-family:Arial, Helvetica, sans-serif;
+  text-align: end;
+}
+
+
+.main-container{
+  position: relative;
+  width: 100vw;
+  height: 93vh;
+  display: flex;
+}
+
+.list-container{
+  flex:1;
+}
+
+.form-container{
+  flex:4;
+}
+
+
