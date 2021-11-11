@@ -1,11 +1,10 @@
 import { action, observable, makeObservable } from "mobx";
 
-export class OrdersStore {
+export class OrderStore {
 
-
-  listLength=0;
-  ordersList=[];
-  
+    firstName='';
+    lastName='';
+    date='';
   
   constructor() {
     makeObservable(this, {

@@ -23,10 +23,12 @@
     font-size: 1rem;
 }
 
-.list-titles-wrapper .orders-title-wrapper{
+/* .list-titles-wrapper .orders-title-wrapper{
 
-}
+} */
 .order_list_cards-container {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
 }
