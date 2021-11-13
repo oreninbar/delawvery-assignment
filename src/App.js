@@ -8,7 +8,8 @@ function App() {
   const [ordersList, setOrdersList] = useState([]);
   const [ordersAmount, setOrdersAmount] = useState(0);
   const [isEditOrder, setToEditOrder] = useState(false);
-  const [editOrderNumber, setEditOrderNumer] = useState(false);
+  const [orderNumber, setOrderNumer] = useState(false);
+  const [order, setOrder] = useState({ firstName: "", lastName: "", date: "" });
 
   const addOrder = (order) => {
     ordersList ? setOrdersList([...ordersList, order]) : setOrdersList([order]);
@@ -23,26 +24,25 @@ function App() {
   };
 
   const editOrder = (orderNumber, order) => {
-    setEditOrderNumer(orderNumber);
-    console.log(isEditOrder);
+    setOrderNumer(orderNumber);
     ordersList[orderNumber] = order;
-    newOrderForm()
+    newOrderForm();
   };
 
   const changeToEditForm = (orderNumber) => {
-    console.log("enter to edit");
-    setEditOrderNumer(orderNumber);
+
+    setOrder(ordersList[orderNumber]);
+    setOrderNumer(orderNumber);
     !isEditOrder && setToEditOrder((isEditOrder) => !isEditOrder);
   };
+
   const newOrderForm = () => {
     isEditOrder && setToEditOrder((isEditOrder) => !isEditOrder);
   };
 
   useEffect(() => {
     ordersList && setOrdersAmount(ordersList.length);
-  }, [ordersList,isEditOrder]);
-
-  useEffect(() => {}, [isEditOrder]);
+  }, [ordersList, isEditOrder]);
 
   return (
     <div className="App">
@@ -51,10 +51,11 @@ function App() {
         <DeliveryForm
           isEditOrder={isEditOrder}
           changeToEditForm={changeToEditForm}
+          newOrderForm={newOrderForm}
           addOrder={addOrder}
           editOrder={editOrder}
-          orderNumber={editOrderNumber}
-          newOrderForm={newOrderForm}
+          orderNumber={orderNumber}
+          order={order}
         />
         <DeliveriesList
           removeOrder={removeOrder}

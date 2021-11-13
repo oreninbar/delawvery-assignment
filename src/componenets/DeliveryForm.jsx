@@ -5,9 +5,9 @@ import validation from "../validation/validation";
 const DeliveryForm = (props) => {
   const [errors, setErrors] = useState({});
   const [inputValues, setOrder] = useState({
-    firstName: "",
-    lastName: "",
-    date: "",
+    firstName: props.order.firstName,
+    lastName: props.order.lastName,
+    date: props.order.date,
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -38,7 +38,13 @@ const DeliveryForm = (props) => {
       });
     }
   }, [isSubmitted, errors, inputValues, props]);
-  useEffect(() => {}, [props.isEditNumber]);
+
+  // useEffect(() => {
+  //   console.log("form use effect");
+  //   console.log(props.isEditOrder);
+  //   console.log(props.order);
+  //   setOrder({...props.order});
+  // }, [props.order]);
 
   return (
     <div className="form-container">
@@ -92,6 +98,7 @@ const DeliveryForm = (props) => {
             type="date"
             className="form-date form-input"
             name="date"
+            dir="rtl"
             values={inputValues.date}
             onChange={handleInput}
           />
