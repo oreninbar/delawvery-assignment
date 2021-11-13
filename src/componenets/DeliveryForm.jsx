@@ -15,8 +15,8 @@ const DeliveryForm = (props) => {
     e.preventDefault();
     let tempErrors = await validation(inputValues);
     setErrors(tempErrors);
-    setIsSubmitted(true);
-    // e.target.reset("");
+    tempErrors && setIsSubmitted(true);
+    e.target.reset();
   };
 
   const handleInput = (e) => {
@@ -27,14 +27,24 @@ const DeliveryForm = (props) => {
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitted) {
-      props.add(inputValues);
+      props.isEditOrder
+        ? props.editOrder(props.orderNumber, inputValues)
+        : props.addOrder(inputValues);
       setIsSubmitted(false);
+      setOrder({
+        firstName: "",
+        lastName: "",
+        date: "",
+      });
     }
   }, [isSubmitted, errors, inputValues, props]);
+  useEffect(() => {}, [props.isEditNumber]);
 
   return (
     <div className="form-container">
-      <div className="neworder-title">הזמנה חדשה</div>
+      <div className="neworder-title">
+        {!props.isEditOrder ? "הזמנה חדשה" : ` ${props.orderNumber + 1} הזמנה `}
+      </div>
       <form className="form" onSubmit={handleSubmit}>
         <div className="input-wrapper privat-name">
           <label htmlFor="userName " className="form-label">
@@ -42,6 +52,7 @@ const DeliveryForm = (props) => {
           </label>
           <input
             type="text"
+            dir="rtl"
             className="form-private-name form-input"
             values={inputValues.firstName}
             name="firstName"
@@ -60,6 +71,7 @@ const DeliveryForm = (props) => {
           </label>
           <input
             type="text"
+            dir="rtl"
             className="form-family-name form-input"
             name="lastName"
             values={inputValues.lastName}
@@ -91,8 +103,16 @@ const DeliveryForm = (props) => {
           )}
         </div>
         <button className="form-input-btn" type="submit">
-          הוספה
+          {!props.isEditOrder ? "הוספה" : "עדכון"}
         </button>
+        {!props.isEditOrder ? null : (
+          <button
+            onClick={() => props.newOrderForm()}
+            className={"form-input-btn cancel"}
+          >
+            ביטול
+          </button>
+        )}
       </form>
     </div>
   );

@@ -5,43 +5,60 @@ import DeliveriesList from "./componenets/DeliveriesList";
 import "./App.css";
 
 function App() {
-  const [ordersList, setOrdersList] = useState(null);
+  const [ordersList, setOrdersList] = useState([]);
   const [ordersAmount, setOrdersAmount] = useState(0);
+  const [isEditOrder, setToEditOrder] = useState(false);
+  const [editOrderNumber, setEditOrderNumer] = useState(false);
 
   const addOrder = (order) => {
-    console.log(order);
     ordersList ? setOrdersList([...ordersList, order]) : setOrdersList([order]);
-    if (ordersList) {
-      setOrdersAmount(ordersList.length);
-    }
+    setOrdersAmount(ordersList.length);
   };
 
-  const removeOrder = (order) => {
-    let tempArr = [...ordersList];
-    let pos = tempArr.indexOf(order);
-    let removedItemArr = tempArr.splice(pos, 1);
-    setOrdersList([...removedItemArr]);
+  const removeOrder = (index) => {
+    let tempArr1 = [...ordersList];
+    tempArr1.splice(index, 1);
+    setOrdersList([...tempArr1]);
+    setToEditOrder(false);
   };
 
-  const editOrder = (order) => {
-    // let tempArr=[...ordersList]
-    // let pos = tempArr.indexOf(order)
-    // let removedItemArr = tempArr.splice(pos, 1)
-    // setOrdersList([...removedItemArr]);
+  const editOrder = (orderNumber, order) => {
+    setEditOrderNumer(orderNumber);
+    console.log(isEditOrder);
+    ordersList[orderNumber] = order;
+    newOrderForm()
+  };
+
+  const changeToEditForm = (orderNumber) => {
+    console.log("enter to edit");
+    setEditOrderNumer(orderNumber);
+    !isEditOrder && setToEditOrder((isEditOrder) => !isEditOrder);
+  };
+  const newOrderForm = () => {
+    isEditOrder && setToEditOrder((isEditOrder) => !isEditOrder);
   };
 
   useEffect(() => {
     ordersList && setOrdersAmount(ordersList.length);
-    // console.log(ordersList);
-  }, [ordersList]);
+  }, [ordersList,isEditOrder]);
+
+  useEffect(() => {}, [isEditOrder]);
 
   return (
     <div className="App">
       <Header />
       <div className="main-container">
-        <DeliveryForm add={addOrder} edit={editOrder} />
+        <DeliveryForm
+          isEditOrder={isEditOrder}
+          changeToEditForm={changeToEditForm}
+          addOrder={addOrder}
+          editOrder={editOrder}
+          orderNumber={editOrderNumber}
+          newOrderForm={newOrderForm}
+        />
         <DeliveriesList
-          remove={removeOrder}
+          removeOrder={removeOrder}
+          changeToEditForm={changeToEditForm}
           orders={ordersList}
           ordersNumber={ordersAmount}
         />
