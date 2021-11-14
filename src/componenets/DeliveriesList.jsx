@@ -25,7 +25,6 @@ const DeliveriesList = (props) => {
             lastName={order.lastName}
             date={order.date}
             removeOrder={props.removeOrder}
-            editOrder={props.editOrder}
             changeToEditForm={props.changeToEditForm}
           />
         ))}

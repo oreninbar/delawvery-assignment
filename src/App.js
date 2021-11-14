@@ -8,8 +8,8 @@ function App() {
   const [ordersList, setOrdersList] = useState([]);
   const [ordersAmount, setOrdersAmount] = useState(0);
   const [isEditOrder, setToEditOrder] = useState(false);
-  const [orderNumber, setOrderNumer] = useState(false);
-  const [order, setOrder] = useState({ firstName: "", lastName: "", date: "" });
+  const [orderNumber, setOrderNumer] = useState(null);
+  const [order, setOrder] = useState({});
 
   const addOrder = (order) => {
     ordersList ? setOrdersList([...ordersList, order]) : setOrdersList([order]);

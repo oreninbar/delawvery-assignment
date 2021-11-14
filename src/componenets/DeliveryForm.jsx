@@ -4,11 +4,7 @@ import validation from "../validation/validation";
 
 const DeliveryForm = (props) => {
   const [errors, setErrors] = useState({});
-  const [inputValues, setOrder] = useState({
-    firstName: props.order.firstName,
-    lastName: props.order.lastName,
-    date: props.order.date,
-  });
+  const [inputValues, setOrder] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -39,13 +35,6 @@ const DeliveryForm = (props) => {
     }
   }, [isSubmitted, errors, inputValues, props]);
 
-  // useEffect(() => {
-  //   console.log("form use effect");
-  //   console.log(props.isEditOrder);
-  //   console.log(props.order);
-  //   setOrder({...props.order});
-  // }, [props.order]);
-
   return (
     <div className="form-container">
       <div className="neworder-title">
@@ -63,6 +52,7 @@ const DeliveryForm = (props) => {
             values={inputValues.firstName}
             name="firstName"
             onChange={handleInput}
+            placeholder={props.isEditOrder && props.order.firstName}
           />
           {errors.firstName && (
             <p className="error-message">
@@ -81,6 +71,7 @@ const DeliveryForm = (props) => {
             className="form-family-name form-input"
             name="lastName"
             values={inputValues.lastName}
+            placeholder={props.isEditOrder && props.order.lastName}
             onChange={handleInput}
           />
           {errors.lastName && (
@@ -100,6 +91,7 @@ const DeliveryForm = (props) => {
             name="date"
             dir="rtl"
             values={inputValues.date}
+            placeholder={props.isEditOrder && props.order.date}
             onChange={handleInput}
           />
           {errors.date && (
